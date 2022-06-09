@@ -11,6 +11,9 @@ export class AppComponent {
   title = 'httpGet';
 
   userName:string = 'Aluferox';
+  pageNo = '1';
+  sortOn = 'description';
+
   repos:Repos[];
   loading:boolean = false;
   errorMessage;
@@ -20,7 +23,7 @@ export class AppComponent {
   public getRepos() {
    this.loading = true;
    this.errorMessage = "";
-   this.gitHubService.getRepos(this.userName)
+   this.gitHubService.getRepos(this.userName, this.pageNo, this.sortOn)
    .subscribe(
      (response) => {
        console.log("Response Received");

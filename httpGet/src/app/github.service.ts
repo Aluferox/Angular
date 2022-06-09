@@ -13,7 +13,14 @@ export class GitHubService {
   baseUrl: string = "https://api.github.com/";
 
   constructor(private http: HttpClient) {};
-  getRepos(userName: string): Observable<any> {
-    return this.http.get(this.baseUrl+ 'users/'+ userName+ '/repos')
+
+  getRepos(userName: string, PageOn:string, SortOn:string): Observable<any> {
+    const params = new HttpParams()
+    .set('page', PageOn)
+    .set('sort', SortOn);
+
+    console.log(params.toString());
+
+    return this.http.get(this.baseUrl+ 'users/'+ userName+ '/repos', {params:params})
   }
 }
