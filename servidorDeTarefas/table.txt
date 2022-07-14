@@ -1,0 +1,102 @@
+
+  <h1>
+    <p>Adicionar Tarefas</p>
+  </h1>
+
+<form class="form-inline" [formGroup]="tasksForm" (ngSubmit)="submit()">
+
+    <input type="text"
+      class="form-control mb-2 mr-sm-2"
+      id="task"
+      name="task"
+      formControlName="task"
+      placeholder="Adicionar Tarefas">
+
+    <select class="custom-select form-control mb-2 mr-sm-2" formControlName="priority">
+      <option [ngValue]="null" disabled> Prioridades</option>
+      <option *ngFor="let priority of prioritys" [ngValue]="priority.id">{{ priority.name }}</option>
+    </select>
+     <button
+      type="submit"
+      class="btn btn-primary mb-2">
+    Adicionar tarefa</button>
+</form>
+
+<h2>Tarefas</h2>
+<table class="table table-hover table-active">
+  <thead>
+    <tr>
+      <th>tarefa</th>
+      <th>Prioridade</th>
+      <th>Status</th>
+
+      <th>Atualizar</th>
+      <th>Excluir</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let task of tasks['data'];">
+
+      <td *ngIf="task.priority == 'Baixa'" class="table-primary">
+        <input (keyup)="onKey($event)" id="{{ task.id }}" class="form-control mb-2 mr-sm-2" type="text" value="{{ task.task }}">
+      </td>
+      <td *ngIf="task.priority == 'Baixa'" class="table-primary">
+        <select id="priority" (change)="onChange($event)" class="custom-select form-control mb-2 mr-sm-2">
+          <option selected disabled> {{ task.priority | uppercase }}</option>
+          <option *ngFor="let priority of prioritys" id="{{ task.id }}" [ngValue]="priority.id">{{ priority.name }}</option>
+        </select>
+      </td>
+      <td *ngIf="task.priority == 'Baixa'" class="table-primary">
+        <select id="status"  (change)="onChange($event)" class="custom-select form-control mb-2 mr-sm-2">
+          <option selected disabled > {{ task.status | uppercase }} </option>
+          <option *ngFor="let status of statusTask" id="{{ task.id }}">{{ status.name }}</option>
+        </select>
+      </td>
+      <td *ngIf="task.priority == 'Baixa'" class="table-primary">
+        <button type="submit" (click)="onChange()" class="btn btn-info">Atualizar</button>
+      </td>
+      <td *ngIf="task.priority == 'Baixa'" class="table-primary"><button class="btn btn-danger">Deletar</button></td>
+
+
+     <td *ngIf="task.priority == 'Média'" class="table-warning">
+       <input (keyup)="onKey($event)" id="{{ task.id }}" class="form-control mb-2 mr-sm-2" type="text" value="{{ task.task }}">
+       </td>
+      <td *ngIf="task.priority == 'Média'" class="table-warning">
+        <select id="priority" (change)="onChange($event)" class="custom-select form-control mb-2 mr-sm-2">
+          <option selected disabled> {{ task.priority | uppercase }}</option>
+          <option *ngFor="let priority of prioritys" [ngValue]="priority.id">{{ priority.name }}</option>
+        </select>
+      </td>
+      <td *ngIf="task.priority == 'Média'" class="table-warning">
+        <select id="status"  (change)="onChange($event)" class="custom-select form-control mb-2 mr-sm-2">
+          <option selected disabled > {{ task.status | uppercase }} </option>
+          <option *ngFor="let status of statusTask">{{ status.name }}</option>
+        </select>
+      </td>
+      <td *ngIf="task.priority == 'Média'" class="table-warning"><button class="btn btn-info">Atualizar</button></td>
+      <td *ngIf="task.priority == 'Média'" class="table-warning"><button class="btn btn-danger">Deletar</button></td>
+
+
+      <td *ngIf="task.priority == 'Alta'" class="table-danger">
+         <input (keyup)="onKey($event)" id="{{ task.id }}" class="form-control mb-2 mr-sm-2 danger" type="text" value="{{ task.task }}">
+      </td>
+      <td *ngIf="task.priority == 'Alta'" class="table-danger">
+        <select id="priority" (change)="onChange($event)" class="custom-select form-control mb-2 mr-sm-2">
+          <option selected disabled> {{ task.priority | uppercase }}</option>
+          <option *ngFor="let priority of prioritys" [ngValue]="priority.id">{{ priority.name }}</option>
+        </select>
+        </td>
+      <td *ngIf="task.priority == 'Alta'" class="table-danger">
+        <select id="status"  (change)="onChange($event)" class="custom-select form-control mb-2 mr-sm-2">
+          <option selected disabled > {{ task.status | uppercase }} </option>
+          <option *ngFor="let status of statusTask">{{ status.name }}</option>
+        </select>
+      </td>
+      <td *ngIf="task.priority == 'Alta'" class="table-danger"><button class="btn btn-info">Atualizar</button></td>
+      <td *ngIf="task.priority == 'Alta'" class="table-danger"><button class="btn btn-danger">Deletar</button></td>
+
+    </tr>
+  </tbody>
+</table>
+
