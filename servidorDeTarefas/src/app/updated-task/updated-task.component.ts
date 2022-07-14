@@ -26,7 +26,7 @@ export class UpdatedTaskComponent implements OnInit {
   ];
 
   statusTask = [
-    {id:'em_andamento', name:'Em Andamento'},
+    {id:'em andamento', name:'Em Andamento'},
     {id:'pendente', name:'Pendente'},
     {id:'concluída', name:'Concluída'},
   ]
@@ -57,9 +57,6 @@ export class UpdatedTaskComponent implements OnInit {
 
   updatedTask() {
     const updatedTask:Task = this.taskUpdatedForm.value
-    console.log(this.taskUpdatedForm.value);
-
-
     this.taskService.patchTask(this.id, updatedTask)
     .subscribe(
       (response) =>{
