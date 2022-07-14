@@ -1,0 +1,37 @@
+<h1>Atualizar Tarefa</h1>
+<form class="form-inline" [formGroup]="taskUpdatedForm"  (ngSubmit)="updatedTask()">
+
+  <input type="text"
+    class="form-control mb-2 mr-sm-2"
+    id="task"
+    name="task"
+    formControlName="task"
+    placeholder="Adicionar Tarefas"
+    value="{{taskUpdated['task'] }}"
+  >
+
+  <select class="custom-select form-control mb-2 mr-sm-2" formControlName="priority">
+    <option [ngValue]="null" disabled> Prioridades</option>
+    <option *ngFor="let priority of prioritys" [ngValue]="priority.id">{{ priority.name }}</option>
+  </select>
+
+  <select class="custom-select form-control mb-2 mr-sm-2" formControlName="status">
+    <option [ngValue]="null" disabled> Status</option>
+    <option *ngFor="let status of statusTask" [ngValue]="status.id">{{ status.name }}</option>
+  </select>
+
+   <button
+    type="submit"
+    class="btn btn-primary mb-2"
+    [disabled]="taskUpdatedForm.invalid">
+  Atualizar tarefa</button>
+
+  &nbsp; &nbsp;
+
+  <button
+  type="submit"
+  class="btn btn-secondary mb-2"
+  [routerLink]="'/add-tasks'"
+  >
+Voltar</button>
+</form>
